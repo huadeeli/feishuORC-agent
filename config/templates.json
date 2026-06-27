@@ -1,0 +1,54 @@
+{
+  "templates": [
+    {
+      "id": "jianhui",
+      "name": "建辉送货信息",
+      "sample_filename": "jianhui 模板.jpg",
+      "match": {
+        "width": 417,
+        "height": 1280,
+        "filename_keywords": ["jianhui", "建辉"],
+        "ocr_keywords": ["送货日期", "结算单价", "代办税额", "结算金额"]
+      },
+      "aliases": {
+        "gross_weight": ["毛重", "毛重*"],
+        "tare_weight": ["皮重", "皮重*"],
+        "unit_price": ["结算单价", "单价", "结算单价*"],
+        "settlement_weight": ["结算重量", "结算重量*"],
+        "tax_fee": ["代办税额", "税费", "税款合计", "代办税额*"]
+      },
+      "sample_values": {
+        "gross_weight": "48.29",
+        "tare_weight": "15.27",
+        "unit_price": "1830",
+        "settlement_weight": "30.84",
+        "tax_fee": "894.05"
+      }
+    },
+    {
+      "id": "jingzhou",
+      "name": "荆州订单跟踪",
+      "sample_filename": "jingzhou 模板.jpg",
+      "match": {
+        "width": 316,
+        "height": 1280,
+        "filename_keywords": ["jingzhou", "荆州"],
+        "ocr_keywords": ["订单跟踪", "含税单", "税款合", "结算金"]
+      },
+      "aliases": {
+        "gross_weight": ["毛重", "毛重:"],
+        "tare_weight": ["皮重", "皮重:"],
+        "unit_price": ["含税单价", "含税单", "单价"],
+        "settlement_weight": ["结算重量", "结算重"],
+        "tax_fee": ["税款合计", "税款合", "代办税额", "税费"]
+      },
+      "sample_values": {
+        "gross_weight": "50.54",
+        "tare_weight": "16.18",
+        "unit_price": "1730",
+        "settlement_weight": "32.669",
+        "tax_fee": "895.33"
+      }
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>废纸 OCR 计算器</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">OCR</div>
+        <div>
+          <h1>废纸 OCR 计算器</h1>
+          <p id="serviceStatus">OCR 加载中（正在真实加载模型）</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <label class="control">
+          <span>OCR</span>
+          <select id="ocrMode">
+            <option value="local">本地</option>
+            <option value="local-fast">本地快速</option>
+            <option value="cloud">云端</option>
+          </select>
+        </label>
+        <label class="control">
+          <span>模板</span>
+          <select id="templateSelect">
+            <option value="auto">自动</option>
+          </select>
+        </label>
+        <a class="ghost-button" href="/api/v1/docs" target="_blank" rel="noreferrer">API</a>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="image-panel" aria-label="图片校验">
+        <div class="panel-header">
+          <div>
+            <h2>图片校验</h2>
+            <p id="fileName">未选择图片</p>
+          </div>
+          <div class="button-row">
+            <label class="primary-button file-button">
+              上传
+              <input id="fileInput" type="file" accept="image/*">
+            </label>
+            <button id="recognizeBtn" class="primary-button" type="button">识别</button>
+          </div>
+        </div>
+
+        <div id="viewerStage" class="viewer-stage">
+          <div class="empty-state" id="emptyState">
+            <strong>选择图片</strong>
+            <span>支持手机长截图</span>
+          </div>
+          <img id="previewImage" alt="待识别图片">
+        </div>
+
+        <div class="viewer-tools" aria-label="图片工具">
+          <button id="zoomOutBtn" type="button" title="缩小">-</button>
+          <input id="zoomRange" type="range" min="5" max="500" value="100" aria-label="缩放比例">
+          <button id="zoomInBtn" type="button" title="放大">+</button>
+          <button id="fitViewBtn" type="button" title="适合窗口">适合窗口</button>
+          <button id="actualSizeBtn" type="button" title="100%">100%</button>
+          <button id="rotateBtn" type="button" title="旋转">旋转</button>
+          <button id="resetViewBtn" type="button" title="复位">复位</button>
+        </div>
+        <p class="viewer-hint">滚轮围绕鼠标位置缩放；在图片框内长按后拖动图片查看细节。</p>
+
+      </section>
+
+      <section class="data-panel" aria-label="识别数据">
+        <div class="panel-header">
+          <div>
+            <h2>识别数据</h2>
+            <p id="templateName">模板：自动</p>
+          </div>
+          <span id="recognizeStatus" class="status-pill">待识别</span>
+        </div>
+
+        <div id="warningList" class="warning-list" hidden></div>
+
+        <div class="field-table" id="fieldTable"></div>
+
+        <div class="manual-grid">
+          <label>
+            <span>手续费</span>
+            <input id="serviceFee" inputmode="decimal" value="0">
+            <small>元/吨</small>
+          </label>
+          <label>
+            <span>中介费</span>
+            <input id="brokerFee" inputmode="decimal" value="0">
+            <small>元/吨</small>
+          </label>
+          <button id="calculateBtn" class="calculate-button" type="button">计算</button>
+        </div>
+
+        <div class="results-grid" id="resultsGrid"></div>
+
+        <div class="export-row">
+          <button id="exportJsonBtn" type="button">导出 JSON</button>
+          <button id="exportCsvBtn" type="button">导出 CSV</button>
+        </div>
+
+        <div class="interface-panel">
+          <div>
+            <span>HTTP</span>
+            <code>POST /api/v1/recognize</code>
+          </div>
+          <div>
+            <span>CLI</span>
+            <code>orc-calc.exe recognize image.jpg --ocr local --json</code>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>

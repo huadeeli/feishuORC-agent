@@ -1,0 +1,2 @@
+# The calculator core and stdlib web server run without third-party packages.
+# Install optional files below only when those capabilities are needed.

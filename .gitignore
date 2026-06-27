@@ -1,0 +1,16 @@
+.env
+.venv/
+.venv-feishu/
+.venv-build/
+.venv-ocr/
+build/
+dist/
+__pycache__/
+*.pyc
+logs/
+runtime/*.png
+runtime/*.log
+runtime/uploads/
+runtime/feishu/
+.ocr-cache/
+ocr_cache/
